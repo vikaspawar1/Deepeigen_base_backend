@@ -1,0 +1,44 @@
+[
+    
+   
+  
+  
+
+
+ 
+
+   
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 90,
+        "fields": {
+            "app_label": "Invoice",
+            "model": "company"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 91,
+        "fields": {
+            "app_label": "Invoice",
+            "model": "course"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 92,
+        "fields": {
+            "app_label": "Invoice",
+            "model": "customer"
+        }
+    },
+   
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 94,
+        "fields": {
+            "app_label": "course",
+            "model": "userinvoice"
+        }
+    }
+]
