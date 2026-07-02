@@ -204,26 +204,10 @@ def create_post(request, id, course_url, section_url):
     is_ajax = True 
 
     if request.method == 'POST':
-        title = None
-        question_text = None
-        section_id = None
-        
-        # First try POST data (form data)
-        if request.POST.get('title') and request.POST.get('question') and request.POST.get('section_id'):
-            title = request.POST.get('title')
-            question_text = request.POST.get('question')
-            section_id = request.POST.get('section_id')
-        # Then try JSON body
-        elif request.headers.get('Content-Type') == 'application/json':
-            import json
-            try:
-                body_data = json.loads(request.body.decode('utf-8'))
-                title = body_data.get('title')
-                question_text = body_data.get('question')
-                section_id = body_data.get('section_id')
-            except Exception as e:
-                print(f"Error parsing JSON body: {e}")
-                pass
+        # Use DRF's request.data (already parsed — avoids "cannot access body after reading stream" error)
+        title = request.data.get('title') or request.POST.get('title')
+        question_text = request.data.get('question') or request.POST.get('question')
+        section_id = request.data.get('section_id') or request.POST.get('section_id')
         
         if not title or not question_text or not section_id:
             if is_ajax:
