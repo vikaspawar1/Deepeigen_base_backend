@@ -320,15 +320,15 @@ PAYU_MODE = 'Live'
 
 
 CSRF_TRUSTED_ORIGINS = [
-        "https://deepeigen-base-frontend.onrender.com",
+    "https://deepeigen-base-frontend.onrender.com",
     "http://localhost:5173",
     "http://localhost:3000",
 ]
 
 ALLOWED_HOSTS = [
+    "deepeigen-base-backend.onrender.com",
+    "deepeigen-base-frontend.onrender.com",
     "deepeigen-backend-4-2g2x.onrender.com",
-    "deepeigen-frontend.onrender.com",
-    "https://deepeigen-base-frontend.onrender.com",
     "localhost",
     "127.0.0.1",
 ]
