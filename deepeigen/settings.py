@@ -96,8 +96,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-
-    "https://deepeigen-base-backend.onrender.com"
+    "https://deepeigen-base-backend.onrender.com",
+    "https://deepeigen-base-frontend.onrender.com",
 ]
 
 
@@ -320,7 +320,7 @@ PAYU_MODE = 'Live'
 
 
 CSRF_TRUSTED_ORIGINS = [
-        "https://deepeigen-frontend-interntask-1.onrender.com",
+        "https://deepeigen-base-frontend.onrender.com",
     "http://localhost:5173",
     "http://localhost:3000",
 ]
@@ -328,6 +328,7 @@ CSRF_TRUSTED_ORIGINS = [
 ALLOWED_HOSTS = [
     "deepeigen-backend-4-2g2x.onrender.com",
     "deepeigen-frontend.onrender.com",
+    "https://deepeigen-base-frontend.onrender.com",
     "localhost",
     "127.0.0.1",
 ]
