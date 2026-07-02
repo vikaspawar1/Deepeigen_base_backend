@@ -204,10 +204,35 @@ def create_post(request, id, course_url, section_url):
     is_ajax = True 
 
     if request.method == 'POST':
-        # Use DRF's request.data (already parsed — avoids "cannot access body after reading stream" error)
-        title = request.data.get('title') or request.POST.get('title')
-        question_text = request.data.get('question') or request.POST.get('question')
-        section_id = request.data.get('section_id') or request.POST.get('section_id')
+        title = None
+        question_text = None
+        section_id = None
+        
+        # First try request.data (DRF parser handles JSON and form-data)
+        if isinstance(request.data, dict):
+            title = request.data.get('title')
+            question_text = request.data.get('question')
+            section_id = request.data.get('section_id')
+        
+        # Fallback to request.POST
+        if not title or not question_text or not section_id:
+            title = title or request.POST.get('title')
+            question_text = question_text or request.POST.get('question')
+            section_id = section_id or request.POST.get('section_id')
+        
+        # Fallback to manual JSON parsing as last resort
+        if not title or not question_text or not section_id:
+            content_type = request.headers.get('Content-Type', '') or request.META.get('CONTENT_TYPE', '')
+            if 'application/json' in content_type:
+                import json
+                try:
+                    body_data = json.loads(request.body.decode('utf-8'))
+                    title = title or body_data.get('title')
+                    question_text = question_text or body_data.get('question')
+                    section_id = section_id or body_data.get('section_id')
+                except Exception as e:
+                    print(f"Error parsing JSON body: {e}")
+                    pass
         
         if not title or not question_text or not section_id:
             if is_ajax:
